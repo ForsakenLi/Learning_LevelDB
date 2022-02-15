@@ -14,16 +14,17 @@
 // immediately following the corresponding key.
 //
 // An entry for a particular key-value pair has the form:
-//     shared_bytes: varint32
-//     unshared_bytes: varint32
-//     value_length: varint32
-//     key_delta: char[unshared_bytes]
-//     value: char[value_length]
+//!     shared_bytes: varint32 -- 和前一个key相同的前缀长度
+//!     unshared_bytes: varint32 -- 和前一个key不同的后缀部分的长度
+//!     value_length: varint32  -- value数据的长度
+//!     key_delta: char[unshared_bytes] -- 和前一个key不同的后缀部分
+//!     value: char[value_length] -- 和前一个key不同的后缀部分
 // shared_bytes == 0 for restart points.
 //
 // The trailer of the block has the form:
-//     restarts: uint32[num_restarts]
-//     num_restarts: uint32
+//!     restarts: uint32[num_restarts] -- 在 LevelDB 中，默认每 16 个 key 就会重新计算前缀压缩，
+//! 重新开始计算前缀压缩到第一个 key 称之为重启点（restart point）。restarts 数组记录了这个 block 中所有重启点的 offset
+//!     num_restarts: uint32 -- 是 restarts 数组的长度
 // restarts[i] contains the offset within the block of the ith restart point.
 
 #include "table/block_builder.h"
@@ -80,7 +81,7 @@ void BlockBuilder::Add(const Slice& key, const Slice& value) {
     // See how much sharing to do with previous string
     const size_t min_length = std::min(last_key_piece.size(), key.size());
     while ((shared < min_length) && (last_key_piece[shared] == key[shared])) {
-      shared++;
+      shared++; // 前缀压缩，利用了 key 的有序性（前缀相同的有序 key 会聚集在一起）对 key 进行压缩，每个 key 与前一个 key 相同的前缀部分可以不用保存
     }
   } else {
     // Restart compression

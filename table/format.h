@@ -21,7 +21,7 @@ struct ReadOptions;
 
 // BlockHandle is a pointer to the extent of a file that stores a data
 // block or a meta block.
-class BlockHandle {
+class BlockHandle { // 相当于一个通过offset_和size_指向的对block的引用
  public:
   BlockHandle();
 
@@ -46,7 +46,7 @@ class BlockHandle {
 
 // Footer encapsulates the fixed information stored at the tail
 // end of every table file.
-class Footer {
+class Footer {  // 48Bytes
  public:
   Footer() {}
 
@@ -67,8 +67,9 @@ class Footer {
   enum { kEncodedLength = 2 * BlockHandle::kMaxEncodedLength + 8 };
 
  private:
-  BlockHandle metaindex_handle_;
-  BlockHandle index_handle_;
+  BlockHandle metaindex_handle_;    // 目前 LevelDB 中只有一个 meta block，保存的是这个 SSTable 中的 key 组成的 bloom filter
+  BlockHandle index_handle_;    // 每条 key-value 指向一个 data block(实际的kv数据块)
+  //! 每一个block_handle中的key都是一个大于等于当前 data block 中最大的 key 且小于下一个 block 中最小的 key
 };
 
 // kTableMagicNumber was picked by running
