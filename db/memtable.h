@@ -74,7 +74,7 @@ class MemTable {
 
   KeyComparator comparator_;
   int refs_;
-  Arena arena_;
+  Arena arena_;  // buffer bool allocator
   Table table_;
 
   // No copying allowed

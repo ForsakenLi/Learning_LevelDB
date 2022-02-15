@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="leveldb" targetName="cache_test" />
+      <config projectName="leveldb" targetName="issue320_test" />
+      <config projectName="leveldb" targetName="autocompact_test" />
+      <config projectName="leveldb" targetName="env_posix_test" />
+      <config projectName="leveldb" targetName="hash_test" />
+      <config projectName="leveldb" targetName="recovery_test" />
+      <config projectName="leveldb" targetName="dbformat_test" />
+      <config projectName="leveldb" targetName="filename_test" />
+      <config projectName="leveldb" targetName="version_edit_test" />
+      <config projectName="leveldb" targetName="log_test" />
+      <config projectName="leveldb" targetName="write_batch_test" />
+      <config projectName="leveldb" targetName="db_bench" />
+      <config projectName="leveldb" targetName="fault_injection_test" />
+      <config projectName="leveldb" targetName="bloom_test" />
+      <config projectName="leveldb" targetName="leveldb" />
+      <config projectName="leveldb" targetName="corruption_test" />
+      <config projectName="leveldb" targetName="crc32c_test" />
+      <config projectName="leveldb" targetName="issue200_test" />
+      <config projectName="leveldb" targetName="env_test" />
+      <config projectName="leveldb" targetName="table_test" />
+      <config projectName="leveldb" targetName="leveldbutil" />
+      <config projectName="leveldb" targetName="issue178_test" />
+      <config projectName="leveldb" targetName="version_set_test" />
+      <config projectName="leveldb" targetName="status_test" />
+      <config projectName="leveldb" targetName="logging_test" />
+      <config projectName="leveldb" targetName="arena_test" />
+      <config projectName="leveldb" targetName="skiplist_test" />
+      <config projectName="leveldb" targetName="coding_test" />
+      <config projectName="leveldb" targetName="db_bench_sqlite3" />
+      <config projectName="leveldb" targetName="filter_block_test" />
+      <config projectName="leveldb" targetName="memenv_test" />
+      <config projectName="leveldb" targetName="no_destructor_test" />
+      <config projectName="leveldb" targetName="db_test" />
+      <config projectName="leveldb" targetName="c_test" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="85ffd1fd-bf44-4934-b189-fb10230be56b" name="默认变更列表" comment="">
+      <change beforePath="$PROJECT_DIR$/db/db_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_impl.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/dbformat.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/dbformat.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/memtable.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/memtable.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/memtable.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/memtable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/skiplist.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/skiplist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/arena.cc" beforeDir="false" afterPath="$PROJECT_DIR$/util/arena.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/arena.h" beforeDir="false" afterPath="$PROJECT_DIR$/util/arena.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/coding.h" beforeDir="false" afterPath="$PROJECT_DIR$/util/coding.h" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="ProjectId" id="2596h1WJMF1JCpawoDxPfzrK80q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.advertisement.text.has.clang-format" value="true" />
+    <property name="cf.advertisement.text.overridden" value="true" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
+    <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
+  </component>
+  <component name="RunManager" selected="CTest 应用程序.所有 CTest">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="arena_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="arena_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="arena_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="autocompact_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="autocompact_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="autocompact_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bloom_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="bloom_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="bloom_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="c_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="c_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="c_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="cache_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="cache_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="cache_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="coding_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="coding_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="coding_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="corruption_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="corruption_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="corruption_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="crc32c_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="crc32c_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="crc32c_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="db_bench" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="db_bench" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="db_bench">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="db_bench_sqlite3" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="db_bench_sqlite3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="db_bench_sqlite3">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="db_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="db_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="db_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dbformat_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="dbformat_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="dbformat_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="env_posix_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="env_posix_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="env_posix_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="env_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="env_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="env_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fault_injection_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="fault_injection_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="fault_injection_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="filename_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="filename_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="filename_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="filter_block_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="filter_block_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="filter_block_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="hash_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="hash_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="hash_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="issue178_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="issue178_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="issue178_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="issue200_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="issue200_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="issue200_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="issue320_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="issue320_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="issue320_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="leveldb" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="leveldb" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="leveldbutil" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="leveldbutil" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="leveldbutil">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="log_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="log_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="log_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="logging_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="logging_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="logging_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="memenv_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="memenv_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="memenv_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="no_destructor_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="no_destructor_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="no_destructor_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="recovery_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="recovery_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="recovery_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="skiplist_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="skiplist_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="skiplist_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="status_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="status_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="status_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="table_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="table_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="table_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="version_edit_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="version_edit_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="version_edit_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="version_set_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="version_set_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="version_set_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="write_batch_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="write_batch_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="write_batch_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="所有 CTest" type="CTestRunConfiguration" factoryName="CTestRun" PROGRAM_PARAMS="--extra-verbose" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$CMakeCurrentGenerationDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$CTestCurrentExecutableName$" EXPLICIT_BUILD_TARGET_NAME="all" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake 应用程序.arena_test" />
+      <item itemvalue="CMake 应用程序.autocompact_test" />
+      <item itemvalue="CMake 应用程序.bloom_test" />
+      <item itemvalue="CMake 应用程序.c_test" />
+      <item itemvalue="CMake 应用程序.cache_test" />
+      <item itemvalue="CMake 应用程序.coding_test" />
+      <item itemvalue="CMake 应用程序.corruption_test" />
+      <item itemvalue="CMake 应用程序.crc32c_test" />
+      <item itemvalue="CMake 应用程序.db_bench" />
+      <item itemvalue="CMake 应用程序.db_bench_sqlite3" />
+      <item itemvalue="CMake 应用程序.db_test" />
+      <item itemvalue="CMake 应用程序.dbformat_test" />
+      <item itemvalue="CMake 应用程序.env_posix_test" />
+      <item itemvalue="CMake 应用程序.env_test" />
+      <item itemvalue="CMake 应用程序.fault_injection_test" />
+      <item itemvalue="CMake 应用程序.filename_test" />
+      <item itemvalue="CMake 应用程序.filter_block_test" />
+      <item itemvalue="CMake 应用程序.hash_test" />
+      <item itemvalue="CMake 应用程序.issue178_test" />
+      <item itemvalue="CMake 应用程序.issue200_test" />
+      <item itemvalue="CMake 应用程序.issue320_test" />
+      <item itemvalue="CMake 应用程序.leveldb" />
+      <item itemvalue="CMake 应用程序.leveldbutil" />
+      <item itemvalue="CMake 应用程序.log_test" />
+      <item itemvalue="CMake 应用程序.logging_test" />
+      <item itemvalue="CMake 应用程序.memenv_test" />
+      <item itemvalue="CMake 应用程序.no_destructor_test" />
+      <item itemvalue="CMake 应用程序.recovery_test" />
+      <item itemvalue="CMake 应用程序.skiplist_test" />
+      <item itemvalue="CMake 应用程序.status_test" />
+      <item itemvalue="CMake 应用程序.table_test" />
+      <item itemvalue="CMake 应用程序.version_edit_test" />
+      <item itemvalue="CMake 应用程序.version_set_test" />
+      <item itemvalue="CMake 应用程序.write_batch_test" />
+      <item itemvalue="CTest 应用程序.所有 CTest" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="85ffd1fd-bf44-4934-b189-fb10230be56b" name="默认变更列表" comment="" />
+      <created>1644927071220</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644927071220</updated>
+      <workItem from="1644927073565" duration="687000" />
+      <workItem from="1644927769491" duration="4367000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

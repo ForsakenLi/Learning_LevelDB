@@ -29,6 +29,11 @@ void PutLengthPrefixedSlice(std::string* dst, const Slice& value);
 
 // Standard Get... routines parse a value from the beginning of a Slice
 // and advance the slice past the parsed value.
+/**
+ * varint 是一种使用一个或多个字节序列化整数的方法，会把整数编码为变长字节。对于 32 位整型经过 varint 编码后需要 1~5 个字节，
+ * 小的数字使用 1 字节，大的数字使用 5 字节。而 64 位整数根据 varint 编码后需要 1~10 个字节。在实际业务场景中，小整数的使用
+ * 频率要远超于大整数的使用频率，因此使用 varint 编码能够有效的节省内存和硬盘的存储空间。
+ */
 bool GetVarint32(Slice* input, uint32_t* value);
 bool GetVarint64(Slice* input, uint64_t* value);
 bool GetLengthPrefixedSlice(Slice* input, Slice* result);
@@ -44,7 +49,8 @@ const char* GetVarint64Ptr(const char* p, const char* limit, uint64_t* v);
 int VarintLength(uint64_t v);
 
 // Lower-level versions of Put... that write directly into a character buffer
-// REQUIRES: dst has enough space for the value being written
+// REQUIRES: dst has enough space for the value being
+//! 将 uint32_t 或者是 uint64_t 转换成 char *
 void EncodeFixed32(char* dst, uint32_t value);
 void EncodeFixed64(char* dst, uint64_t value);
 

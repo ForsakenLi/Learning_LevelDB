@@ -31,6 +31,12 @@ int MemTable::KeyComparator::operator()(const char* aptr,
   Slice a = GetLengthPrefixedSlice(aptr);
   Slice b = GetLengthPrefixedSlice(bptr);
   return comparator.Compare(a, b);
+  /**
+    1. 优先按照 user key 进行排序。
+    2. User key 相同的按照 seq 降序排序。
+    3. User key 和 seq 相同的按照 type 降序排序（逻辑上不会达到这一步，因为一个 LevelDB 的 sequence 是单调递增的）。
+    所以，在一个 MemTable 中，相同的 user key 的多个版本，新的排在前面，旧的排在后面。
+   */
 }
 
 // Encode a suitable internal key target for "target" and return it.

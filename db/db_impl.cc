@@ -1188,7 +1188,7 @@ Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
   w.done = false;
 
   MutexLock l(&mutex_);
-  writers_.push_back(&w);
+  writers_.push_back(&w);   //  通过维护一个写队列来保证同一时刻只有一个线程会写 MemTable
   while (!w.done && &w != writers_.front()) {
     w.cv.Wait();
   }

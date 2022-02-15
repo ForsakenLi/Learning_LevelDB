@@ -20,7 +20,7 @@ Arena::~Arena() {
 }
 
 char* Arena::AllocateFallback(size_t bytes) {
-  if (bytes > kBlockSize / 4) {
+  if (bytes > kBlockSize / 4) {  // 申请的内存大于 kBlockSize / 4，则直接 new 一块内存给这个请求减少碎片
     // Object is more than a quarter of our block size.  Allocate it separately
     // to avoid wasting too much space in leftover bytes.
     char* result = AllocateNewBlock(bytes);
@@ -28,6 +28,7 @@ char* Arena::AllocateFallback(size_t bytes) {
   }
 
   // We waste the remaining space in the current block.
+  // 直接再申请一个4KB的完整block，并从这个block划分一部分
   alloc_ptr_ = AllocateNewBlock(kBlockSize);
   alloc_bytes_remaining_ = kBlockSize;
 
@@ -37,6 +38,9 @@ char* Arena::AllocateFallback(size_t bytes) {
   return result;
 }
 
+/**
+ * 因为 SkipList 中会涉及一些原子操作，所以 AllocateAligned 分配的内存需要和指针的大小（一般是8字节）对齐
+ */
 char* Arena::AllocateAligned(size_t bytes) {
   const int align = (sizeof(void*) > 8) ? sizeof(void*) : 8;
   static_assert((align & (align - 1)) == 0,

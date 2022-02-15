@@ -155,13 +155,13 @@ struct SkipList<Key, Comparator>::Node {
     assert(n >= 0);
     // Use an 'acquire load' so that we observe a fully initialized
     // version of the returned Node.
-    return next_[n].load(std::memory_order_acquire);
+    return next_[n].load(std::memory_order_acquire);    // 表示在 load() 之后的所有读写操作，不允许被重排到这个 load() 的前面
   }
   void SetNext(int n, Node* x) {
     assert(n >= 0);
     // Use a 'release store' so that anybody who reads through this
     // pointer observes a fully initialized version of the inserted node.
-    next_[n].store(x, std::memory_order_release);
+    next_[n].store(x, std::memory_order_release);   // 表示在 store() 之前的所有读写操作，不允许被重排到这个 store() 的后面
   }
 
   // No-barrier variants that can be safely used in a few locations.
@@ -242,7 +242,7 @@ inline void SkipList<Key, Comparator>::Iterator::SeekToLast() {
 template <typename Key, class Comparator>
 int SkipList<Key, Comparator>::RandomHeight() {
   // Increase height with probability 1 in kBranching
-  static const unsigned int kBranching = 4;
+  static const unsigned int kBranching = 4; // 上面分析的每个元素高度增长的概率设置为 1/4
   int height = 1;
   while (height < kMaxHeight && ((rnd_.Next() % kBranching) == 0)) {
     height++;
@@ -258,6 +258,9 @@ bool SkipList<Key, Comparator>::KeyIsAfterNode(const Key& key, Node* n) const {
   return (n != nullptr) && (compare_(n->key, key) < 0);
 }
 
+/**
+ *  查找并返回第一个大于等于 key 的节点，如果是查找后需要进行插入，需要记录下这个节点的 prev 指针
+ */
 template <typename Key, class Comparator>
 typename SkipList<Key, Comparator>::Node*
 SkipList<Key, Comparator>::FindGreaterOrEqual(const Key& key,
@@ -266,7 +269,7 @@ SkipList<Key, Comparator>::FindGreaterOrEqual(const Key& key,
   int level = GetMaxHeight() - 1;
   while (true) {
     Node* next = x->Next(level);
-    if (KeyIsAfterNode(key, next)) {
+    if (KeyIsAfterNode(key, next)) {    // 平级搜索
       // Keep searching in this list
       x = next;
     } else {
@@ -275,7 +278,7 @@ SkipList<Key, Comparator>::FindGreaterOrEqual(const Key& key,
         return next;
       } else {
         // Switch to next list
-        level--;
+        level--;    // 降级搜索
       }
     }
   }
@@ -283,7 +286,7 @@ SkipList<Key, Comparator>::FindGreaterOrEqual(const Key& key,
 
 template <typename Key, class Comparator>
 typename SkipList<Key, Comparator>::Node*
-SkipList<Key, Comparator>::FindLessThan(const Key& key) const {
+SkipList<Key, Comparator>::FindLessThan(const Key& key) const { // 查找并返回最后一个小于 key 的节点
   Node* x = head_;
   int level = GetMaxHeight() - 1;
   while (true) {
@@ -303,7 +306,7 @@ SkipList<Key, Comparator>::FindLessThan(const Key& key) const {
 }
 
 template <typename Key, class Comparator>
-typename SkipList<Key, Comparator>::Node* SkipList<Key, Comparator>::FindLast()
+typename SkipList<Key, Comparator>::Node* SkipList<Key, Comparator>::FindLast() // 查找并返回最后一个节点
     const {
   Node* x = head_;
   int level = GetMaxHeight() - 1;

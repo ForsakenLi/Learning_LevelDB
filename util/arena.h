@@ -57,13 +57,13 @@ inline char* Arena::Allocate(size_t bytes) {
   // 0-byte allocations, so we disallow them here (we don't need
   // them for our internal use).
   assert(bytes > 0);
-  if (bytes <= alloc_bytes_remaining_) {
+  if (bytes <= alloc_bytes_remaining_) {    // 在 block 剩余内存足够的情况下，内存申请都可以直接从这个 block 划一部分出去
     char* result = alloc_ptr_;
     alloc_ptr_ += bytes;
     alloc_bytes_remaining_ -= bytes;
     return result;
   }
-  return AllocateFallback(bytes);
+  return AllocateFallback(bytes);   // 如果 block 剩余的内存不够
 }
 
 }  // namespace leveldb
