@@ -86,19 +86,19 @@ class VersionEdit {
   typedef std::set<std::pair<int, uint64_t> > DeletedFileSet;
 
   std::string comparator_;
-  uint64_t log_number_;
-  uint64_t prev_log_number_;
-  uint64_t next_file_number_;
-  SequenceNumber last_sequence_;
+  uint64_t log_number_; //最小的有效 log number,小于 log_numbers_ 的 log 文件都可以删除
+  uint64_t prev_log_number_;    //已经废弃，代码保留是为了兼容旧版本的 LevelDB
+  uint64_t next_file_number_;   // 下一个文件的编号
+  SequenceNumber last_sequence_;    // SSTable 中的最大的 sequence number
   bool has_comparator_;
   bool has_log_number_;
   bool has_prev_log_number_;
   bool has_next_file_number_;
   bool has_last_sequence_;
 
-  std::vector<std::pair<int, InternalKey> > compact_pointers_;
-  DeletedFileSet deleted_files_;
-  std::vector<std::pair<int, FileMetaData> > new_files_;
+  std::vector<std::pair<int, InternalKey> > compact_pointers_;  // 记录每一层要进行下一次 compaction 的起始 key
+  DeletedFileSet deleted_files_;    // 可以删除的 SSTable（level-no -> file-no）
+  std::vector<std::pair<int, FileMetaData> > new_files_;    // 新增的 SSTable
 };
 
 }  // namespace leveldb

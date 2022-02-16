@@ -42,7 +42,7 @@ Status TableCache::FindTable(uint64_t file_number, uint64_t file_size,
                              Cache::Handle** handle) {
   Status s;
   char buf[sizeof(file_number)];
-  EncodeFixed64(buf, file_number);
+  EncodeFixed64(buf, file_number);  // file_number作为cache key
   Slice key(buf, sizeof(buf));
   *handle = cache_->Lookup(key);
   if (*handle == nullptr) {

@@ -46,9 +46,15 @@
   <component name="ChangeListManager">
     <list default="true" id="85ffd1fd-bf44-4934-b189-fb10230be56b" name="默认变更列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/log_format.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/log_format.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/block_builder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/table/block_builder.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/format.h" beforeDir="false" afterPath="$PROJECT_DIR$/table/format.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_impl.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/table_cache.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/table_cache.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/version_edit.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/version_edit.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/version_set.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/version_set.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/leveldb/env.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/leveldb/env.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table/table.cc" beforeDir="false" afterPath="$PROJECT_DIR$/table/table.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/bloom.cc" beforeDir="false" afterPath="$PROJECT_DIR$/util/bloom.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/cache.cc" beforeDir="false" afterPath="$PROJECT_DIR$/util/cache.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,11 +88,6 @@
     <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
   </component>
   <component name="RunManager" selected="CTest 应用程序.所有 CTest">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="arena_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leveldb" TARGET_NAME="arena_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leveldb" RUN_TARGET_NAME="arena_test">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -315,7 +316,8 @@
       <option name="presentableId" value="Default" />
       <updated>1644927071220</updated>
       <workItem from="1644927073565" duration="687000" />
-      <workItem from="1644927769491" duration="9360000" />
+      <workItem from="1644927769491" duration="16211000" />
+      <workItem from="1645026894480" duration="2179000" />
     </task>
     <servers />
   </component>

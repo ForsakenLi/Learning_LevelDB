@@ -306,7 +306,7 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
     }
   }
 
-  s = versions_->Recover(save_manifest);
+  s = versions_->Recover(save_manifest); // 如果有manifest文件，恢复各level的SSTable
   if (!s.ok()) {
     return s;
   }
@@ -319,6 +319,7 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
   // Note that PrevLogNumber() is no longer used, but we pay
   // attention to it in case we are recovering a database
   // produced by an older version of leveldb.
+  //! 文件检查，比较外存上的文件是否和manifest对应
   const uint64_t min_log = versions_->LogNumber();
   const uint64_t prev_log = versions_->PrevLogNumber();
   std::vector<std::string> filenames;
@@ -330,7 +331,7 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
   versions_->AddLiveFiles(&expected);
   uint64_t number;
   FileType type;
-  std::vector<uint64_t> logs;
+  std::vector<uint64_t> logs;   //收集恢复所需的log文件
   for (size_t i = 0; i < filenames.size(); i++) {
     if (ParseFileName(filenames[i], &number, &type)) {
       expected.erase(number);
@@ -349,7 +350,7 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
   std::sort(logs.begin(), logs.end());
   for (size_t i = 0; i < logs.size(); i++) {
     s = RecoverLogFile(logs[i], (i == logs.size() - 1), save_manifest, edit,
-                       &max_sequence);
+                       &max_sequence);  // 根据 log 文件恢复 MemTable
     if (!s.ok()) {
       return s;
     }
@@ -357,11 +358,11 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
     // The previous incarnation may not have written any MANIFEST
     // records after allocating this log number.  So we manually
     // update the file number allocation counter in VersionSet.
-    versions_->MarkFileNumberUsed(logs[i]);
+    versions_->MarkFileNumberUsed(logs[i]); // 更新next_file_number_
   }
 
   if (versions_->LastSequence() < max_sequence) {
-    versions_->SetLastSequence(max_sequence);
+    versions_->SetLastSequence(max_sequence);   // // 更新last_sequence_
   }
 
   return Status::OK();
@@ -644,7 +645,7 @@ void DBImpl::RecordBackgroundError(const Status& s) {
   }
 }
 
-void DBImpl::MaybeScheduleCompaction() {
+void DBImpl::MaybeScheduleCompaction() {    // 后台压缩任务
   mutex_.AssertHeld();
   if (background_compaction_scheduled_) {
     // Already scheduled
@@ -1470,15 +1471,15 @@ Status DB::Delete(const WriteOptions& opt, const Slice& key) {
 
 DB::~DB() {}
 
-Status DB::Open(const Options& options, const std::string& dbname, DB** dbptr) {
+Status DB::Open(const Options& options, const std::string& dbname, DB** dbptr) {    // LevelDB初始化
   *dbptr = nullptr;
 
-  DBImpl* impl = new DBImpl(options, dbname);
+  DBImpl* impl = new DBImpl(options, dbname);   // 创建新的DB实例
   impl->mutex_.Lock();
   VersionEdit edit;
   // Recover handles create_if_missing, error_if_exists
   bool save_manifest = false;
-  Status s = impl->Recover(&edit, &save_manifest);
+  Status s = impl->Recover(&edit, &save_manifest);  // 从 Manifest 文件恢复各个 level 的 SSTable 的元数据
   if (s.ok() && impl->mem_ == nullptr) {
     // Create new log and a corresponding memtable.
     uint64_t new_log_number = impl->versions_->NewFileNumber();

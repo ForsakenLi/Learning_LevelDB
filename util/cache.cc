@@ -42,7 +42,7 @@ namespace {
 struct LRUHandle {
   void* value;
   void (*deleter)(const Slice&, void* value);
-  LRUHandle* next_hash;
+  LRUHandle* next_hash; // hash冲突的对象(拉链法)
   LRUHandle* next;
   LRUHandle* prev;
   size_t charge;  // TODO(opt): Only allow uint32_t?
@@ -189,7 +189,7 @@ class LRUCache {
 
   // Dummy head of in-use list.
   // Entries are in use by clients, and have refs >= 2 and in_cache==true.
-  LRUHandle in_use_ GUARDED_BY(mutex_);
+  LRUHandle in_use_ GUARDED_BY(mutex_);  // 维护 cache 中有哪些缓存对象被返回给调用端使用，类似445Lab1中的pin机制，这些对象不能被移出Cache
 
   HandleTable table_ GUARDED_BY(mutex_);
 };
@@ -345,7 +345,7 @@ class ShardedLRUCache : public Cache {
     return Hash(s.data(), s.size(), 0);
   }
 
-  static uint32_t Shard(uint32_t hash) { return hash >> (32 - kNumShardBits); }
+  static uint32_t Shard(uint32_t hash) { return hash >> (32 - kNumShardBits); } // 使用前 4 位作为分片hash
 
  public:
   explicit ShardedLRUCache(size_t capacity) : last_id_(0) {

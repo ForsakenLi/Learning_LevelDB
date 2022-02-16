@@ -57,7 +57,7 @@ bool SomeFileOverlapsRange(const InternalKeyComparator& icmp,
                            const Slice* smallest_user_key,
                            const Slice* largest_user_key);
 
-class Version {
+class Version { // Version 是 VersionEdit 进行 apply 之后得到的数据库状态——当前版本包含哪些 SSTable，并通过引用计数保证多线程并发访问的安全性
  public:
   // Append to *iters a sequence of iterators that will
   // yield the contents of this Version when merged together.
@@ -87,6 +87,7 @@ class Version {
 
   // Reference count management (so Versions do not disappear out from
   // under live iterators)
+  // 读操作要读取 SSTable 之前需要调用 Version::Ref 增加引用计数，不使用时需要调用 Version::UnRef 减少引用计数
   void Ref();
   void Unref();
 
