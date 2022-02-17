@@ -41,16 +41,16 @@ namespace leveldb {
 const int kNumNonTableCacheFiles = 10;
 
 // Information kept for every waiting writer
-struct DBImpl::Writer {
-  Status status;
-  WriteBatch* batch;
-  bool sync;
-  bool done;
-  port::CondVar cv;
+    struct DBImpl::Writer {
+        Status status;              // 执行结果
+        WriteBatch *batch;   // 更新的数据（1～多个 key-value）
+        bool sync;                    // 是否 flush，WriteOptions.sync
+        bool done;                  // 是否已经执行
+        port::CondVar cv;    // 条件变量
 
-  explicit Writer(port::Mutex* mu)
-      : batch(nullptr), sync(false), done(false), cv(mu) {}
-};
+        explicit Writer(port::Mutex *mu)
+                : batch(nullptr), sync(false), done(false), cv(mu) {}
+    };
 
 struct DBImpl::CompactionState {
   Compaction* const compaction;
@@ -1183,39 +1183,40 @@ Status DBImpl::Delete(const WriteOptions& options, const Slice& key) {
 }
 
 Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
-  Writer w(&mutex_);
+  Writer w(&mutex_);    // Writer表示一次写操作，可通过WriteBatch完成批量写
   w.batch = updates;
   w.sync = options.sync;
   w.done = false;
 
   MutexLock l(&mutex_);
   writers_.push_back(&w);   //  通过维护一个写队列来保证同一时刻只有一个线程会写 MemTable
-  while (!w.done && &w != writers_.front()) {
-    w.cv.Wait();
+  while (!w.done && &w != writers_.front()) {   // 仅有在队首时时才会执行写入保证写与写之间串行
+    w.cv.Wait();    // cv通知队列状态变化
   }
-  if (w.done) {
+  if (w.done) { // 如果被合并写入机制合并写入完成，直接quit
     return w.status;
   }
 
   // May temporarily unlock and wait.
+  //! MakeRoomForWrite：level-0 的文件数量是否超过限制？MemTable 是否超过阈值需要切换？
   Status status = MakeRoomForWrite(updates == nullptr);
   uint64_t last_sequence = versions_->LastSequence();
   Writer* last_writer = &w;
   if (status.ok() && updates != nullptr) {  // nullptr batch is for compactions
-    WriteBatch* updates = BuildBatchGroup(&last_writer);
-    WriteBatchInternal::SetSequence(updates, last_sequence + 1);
+    WriteBatch* updates = BuildBatchGroup(&last_writer);    // 从队首开始的连续多个符合条件的 writer 合并到 tmp_batch_
+    WriteBatchInternal::SetSequence(updates, last_sequence + 1);    // 设置写入的新的sequence_number
     last_sequence += WriteBatchInternal::Count(updates);
 
     // Add to log and apply to memtable.  We can release the lock
-    // during this phase since &w is currently responsible for logging
+    // during this phase sincei &w s currently responsible for logging
     // and protects against concurrent loggers and concurrent writes
     // into mem_.
     {
-      mutex_.Unlock();
-      status = log_->AddRecord(WriteBatchInternal::Contents(updates));
+      mutex_.Unlock();  // 因为writer队列仅有在队首时才能开始写入，已经保证了串行，因此可以不需要mutex保护
+      status = log_->AddRecord(WriteBatchInternal::Contents(updates));  // WAL
       bool sync_error = false;
       if (status.ok() && options.sync) {
-        status = logfile_->Sync();
+        status = logfile_->Sync();  //将日志文件flush到外存
         if (!status.ok()) {
           sync_error = true;
         }
@@ -1228,7 +1229,7 @@ Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
         // The state of the log file is indeterminate: the log record we
         // just added may or may not show up when the DB is re-opened.
         // So we force the DB into a mode where all future writes fail.
-        RecordBackgroundError(status);
+        RecordBackgroundError(status);  // 由于log写入的结果无法预知，导致目前的状态无法确定，直接使DB之后全部的写入寄掉
       }
     }
     if (updates == tmp_batch_) tmp_batch_->Clear();
@@ -1242,14 +1243,14 @@ Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
     if (ready != &w) {
       ready->status = status;
       ready->done = true;
-      ready->cv.Signal();
+      ready->cv.Signal();   //通知所有已经被成功合并写入的线程
     }
     if (ready == last_writer) break;
   }
 
   // Notify new head of write queue
   if (!writers_.empty()) {
-    writers_.front()->cv.Signal();
+    writers_.front()->cv.Signal();     //唤醒在cv队首等待写入的线程
   }
 
   return status;
@@ -1318,7 +1319,7 @@ Status DBImpl::MakeRoomForWrite(bool force) {
       s = bg_error_;
       break;
     } else if (allow_delay && versions_->NumLevelFiles(0) >=
-                                  config::kL0_SlowdownWritesTrigger) {
+                                  config::kL0_SlowdownWritesTrigger) {  //! Level0文件数目达到慢写入阈值8
       // We are getting close to hitting a hard limit on the number of
       // L0 files.  Rather than delaying a single write by several
       // seconds when we hit the hard limit, start delaying each
@@ -1333,12 +1334,12 @@ Status DBImpl::MakeRoomForWrite(bool force) {
                (mem_->ApproximateMemoryUsage() <= options_.write_buffer_size)) {
       // There is room in current memtable
       break;
-    } else if (imm_ != nullptr) {
+    } else if (imm_ != nullptr) {   //! immutable已经存在，等待compact完成
       // We have filled up the current memtable, but the previous
       // one is still being compacted, so we wait.
       Log(options_.info_log, "Current memtable full; waiting...\n");
       background_work_finished_signal_.Wait();
-    } else if (versions_->NumLevelFiles(0) >= config::kL0_StopWritesTrigger) {
+    } else if (versions_->NumLevelFiles(0) >= config::kL0_StopWritesTrigger) {  //! Level0文件数目超过12, 阻塞等待compact
       // There are too many level-0 files.
       Log(options_.info_log, "Too many L0 files; waiting...\n");
       background_work_finished_signal_.Wait();
@@ -1363,7 +1364,7 @@ Status DBImpl::MakeRoomForWrite(bool force) {
       mem_ = new MemTable(internal_comparator_);
       mem_->Ref();
       force = false;  // Do not force another compaction if have room
-      MaybeScheduleCompaction();
+      MaybeScheduleCompaction();    // 直接切换到压缩任务
     }
   }
   return s;

@@ -47,13 +47,7 @@
     <list default="true" id="85ffd1fd-bf44-4934-b189-fb10230be56b" name="默认变更列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_impl.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/memtable.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/memtable.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/skiplist.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/skiplist.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/snapshot.h" beforeDir="false" afterPath="$PROJECT_DIR$/db/snapshot.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/table_cache.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/table_cache.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/version_set.cc" beforeDir="false" afterPath="$PROJECT_DIR$/db/version_set.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/leveldb/options.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/leveldb/options.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/table.cc" beforeDir="false" afterPath="$PROJECT_DIR$/table/table.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,7 +306,7 @@
       <workItem from="1644927073565" duration="687000" />
       <workItem from="1644927769491" duration="16211000" />
       <workItem from="1645026894480" duration="2179000" />
-      <workItem from="1645029865745" duration="8833000" />
+      <workItem from="1645029865745" duration="12129000" />
     </task>
     <servers />
   </component>
