@@ -58,7 +58,8 @@ class SnapshotList {
     assert(empty() || newest()->sequence_number_ <= sequence_number);
 
     SnapshotImpl* snapshot = new SnapshotImpl(sequence_number);
-
+      // GetSnapshot时，将这个快照对象放到SnapshotList中
+      //! Compaction 的时候，遇到可以清理的数据，还需要判断是否会影响这些快照
 #if !defined(NDEBUG)
     snapshot->list_ = this;
 #endif  // !defined(NDEBUG)

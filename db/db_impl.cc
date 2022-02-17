@@ -362,7 +362,7 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
   }
 
   if (versions_->LastSequence() < max_sequence) {
-    versions_->SetLastSequence(max_sequence);   // // 更新last_sequence_
+    versions_->SetLastSequence(max_sequence);   // 更新last_sequence_
   }
 
   return Status::OK();
@@ -1102,17 +1102,17 @@ Status DBImpl::Get(const ReadOptions& options, const Slice& key,
   Status s;
   MutexLock l(&mutex_);
   SequenceNumber snapshot;
-  if (options.snapshot != nullptr) {
+  if (options.snapshot != nullptr) {    // 如果指定从特定snapshot，使用该版本的sequence_number
     snapshot =
         static_cast<const SnapshotImpl*>(options.snapshot)->sequence_number();
   } else {
     snapshot = versions_->LastSequence();
   }
 
-  MemTable* mem = mem_;
-  MemTable* imm = imm_;
+  MemTable* mem = mem_; //mutable
+  MemTable* imm = imm_; // immutable
   Version* current = versions_->current();
-  mem->Ref();
+  mem->Ref();   //  增加引用计数防止被GC
   if (imm != nullptr) imm->Ref();
   current->Ref();
 
@@ -1121,24 +1121,24 @@ Status DBImpl::Get(const ReadOptions& options, const Slice& key,
 
   // Unlock while reading from files and memtables
   {
-    mutex_.Unlock();
+    mutex_.Unlock();    // 下面的操作都是读操作，可并发执行
     // First look in the memtable, then in the immutable memtable (if any).
-    LookupKey lkey(key, snapshot);
-    if (mem->Get(lkey, value, &s)) {
+    LookupKey lkey(key, snapshot);  // lookupkey是一个对userkey和sequence_number进行的拼接
+    if (mem->Get(lkey, value, &s)) {    // 先从memtable查找
       // Done
-    } else if (imm != nullptr && imm->Get(lkey, value, &s)) {
+    } else if (imm != nullptr && imm->Get(lkey, value, &s)) {   // 再从immtable查找
       // Done
     } else {
-      s = current->Get(options, lkey, value, &stats);
+      s = current->Get(options, lkey, value, &stats);   // 最后从sstable查找（sstable使用VersionSet实现多版本管理）
       have_stat_update = true;
     }
     mutex_.Lock();
   }
 
   if (have_stat_update && current->UpdateStats(stats)) {
-    MaybeScheduleCompaction();
+    MaybeScheduleCompaction();  // 主动Compaction,很少触发
   }
-  mem->Unref();
+  mem->Unref(); // 释放引用计数
   if (imm != nullptr) imm->Unref();
   current->Unref();
   return s;

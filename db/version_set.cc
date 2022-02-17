@@ -340,7 +340,7 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
   // in a smaller level, later levels are irrelevant.
   std::vector<FileMetaData*> tmp;
   FileMetaData* tmp2;
-  for (int level = 0; level < config::kNumLevels; level++) {
+  for (int level = 0; level < config::kNumLevels; level++) {    // 从level0开始向下依次查找
     size_t num_files = files_[level].size();
     if (num_files == 0) continue;
 
@@ -350,10 +350,10 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       // Level-0 files may overlap each other.  Find all files that
       // overlap user_key and process them in order from newest to oldest.
       tmp.reserve(num_files);
-      for (uint32_t i = 0; i < num_files; i++) {
+      for (uint32_t i = 0; i < num_files; i++) {    // 对于level-0，每个 SSTable 的 key 范围可能相交，每一个 SSTable 都需要判断
         FileMetaData* f = files[i];
         if (ucmp->Compare(user_key, f->smallest.user_key()) >= 0 &&
-            ucmp->Compare(user_key, f->largest.user_key()) <= 0) {
+            ucmp->Compare(user_key, f->largest.user_key()) <= 0) {  // 如果userkey在该sstable的范围内
           tmp.push_back(f);
         }
       }
@@ -364,7 +364,7 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       num_files = tmp.size();
     } else {
       // Binary search to find earliest index whose largest key >= ikey.
-      uint32_t index = FindFile(vset_->icmp_, files_[level], ikey);
+      uint32_t index = FindFile(vset_->icmp_, files_[level], ikey); // 对于非level0, 通过二分查找的方式优化效率
       if (index >= num_files) {
         files = nullptr;
         num_files = 0;
@@ -381,7 +381,7 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       }
     }
 
-    for (uint32_t i = 0; i < num_files; ++i) {
+    for (uint32_t i = 0; i < num_files; ++i) {  // 按照从新到旧开始查找，如果找到了，就可以直接返回结果
       if (last_file_read != nullptr && stats->seek_file == nullptr) {
         // We have had more than one seek for this read.  Charge the 1st file.
         stats->seek_file = last_file_read;
@@ -398,7 +398,7 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       saver.user_key = user_key;
       saver.value = value;
       s = vset_->table_cache_->Get(options, f->number, f->file_size, ikey,
-                                   &saver, SaveValue);
+                                   &saver, SaveValue);  // 查找逻辑
       if (!s.ok()) {
         return s;
       }
@@ -420,10 +420,11 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
   return Status::NotFound(Slice());  // Use an empty error message for speed
 }
 
+//! 更新 SSTable 的读统计信息，根据统计结果决定是否调度后台 Compaction
 bool Version::UpdateStats(const GetStats& stats) {
   FileMetaData* f = stats.seek_file;
   if (f != nullptr) {
-    f->allowed_seeks--;
+    f->allowed_seeks--; //! 在一个文件被检索过的次数超过一个阈值且未被创建过compact，才会触发主动compaction条件
     if (f->allowed_seeks <= 0 && file_to_compact_ == nullptr) {
       file_to_compact_ = f;
       file_to_compact_level_ = stats.seek_file_level;

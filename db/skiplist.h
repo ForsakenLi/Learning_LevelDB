@@ -223,7 +223,10 @@ inline void SkipList<Key, Comparator>::Iterator::Prev() {
 
 template <typename Key, class Comparator>
 inline void SkipList<Key, Comparator>::Iterator::Seek(const Key& target) {
-  node_ = list_->FindGreaterOrEqual(target, nullptr);
+  node_ = list_->FindGreaterOrEqual(target, nullptr);   // 返回值是一个指针，指向第一个大于等于 key 的结点
+  //! 在 MemTable 中，同一个 userkey 的多个版本是按照 sequence number 降序排序的
+  //! sequence number 小的在排序中比较大，sequence number 大的在排序中比较小
+  //! 所以如果使用一个旧的 snapshot，只能查到比这个 snapshot 旧（或一样旧）的数据
 }
 
 template <typename Key, class Comparator>
